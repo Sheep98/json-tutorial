@@ -17,12 +17,13 @@ static int test_pass = 0;
             main_ret = 1;\
         }\
     } while(0)
-
+//检查expect（预期值）是否等于actual（实际值），如果不等于，会输出错误信息
 #define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
 
 static void test_parse_null() {
-    lept_value v;
-    v.type = LEPT_FALSE;
+    lept_value v;		//定义一个JSON节点
+    v.type = LEPT_FALSE;//它的类型为FALSE	
+	//             无错              解析v（FALSE），字符串传入null
     EXPECT_EQ_INT(LEPT_PARSE_OK, lept_parse(&v, "null"));
     EXPECT_EQ_INT(LEPT_NULL, lept_get_type(&v));
 }
@@ -67,5 +68,6 @@ static void test_parse() {
 int main() {
     test_parse();
     printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);
-    return main_ret;
+	system("pause");
+	return main_ret;
 }
